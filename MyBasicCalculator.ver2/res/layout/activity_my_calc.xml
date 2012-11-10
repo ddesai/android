@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/editNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textOperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editNum1"
+        android:layout_below="@+id/editNum1"
+        android:layout_marginTop="23dp"
+        android:text="Op"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/editNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textOperation"
+        android:layout_below="@+id/textOperation"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/buttonPlus"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editNum2"
+        android:layout_below="@+id/editNum2"
+        android:layout_marginTop="19dp"
+        android:onClick="plusClicked"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/buttonMinus"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonPlus"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/buttonPlus"
+        android:onClick="minusClicked"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/buttonMul"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonMinus"
+        android:layout_alignBottom="@+id/buttonMinus"
+        android:layout_toRightOf="@+id/buttonMinus"
+        android:onClick="mulClicked"
+        android:text="*" />
+
+    <Button
+        android:id="@+id/buttonDiv"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonMul"
+        android:layout_toRightOf="@+id/buttonMul"
+        android:onClick="divClicked"
+        android:text="/" />
+
+    <Button
+        android:id="@+id/buttonAns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonPlus"
+        android:layout_alignRight="@+id/buttonMinus"
+        android:layout_below="@+id/buttonPlus"
+        android:layout_marginTop="26dp"
+        android:onClick="ansClicked"
+        android:text="Ans" />
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonAns"
+        android:layout_alignBottom="@+id/buttonAns"
+        android:layout_alignLeft="@+id/buttonMul"
+        android:layout_alignRight="@+id/buttonDiv"
+        android:onClick="clearClicked"
+        android:text="Clear" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/buttonAns"
+        android:layout_below="@+id/buttonAns"
+        android:layout_marginTop="41dp"
+        android:text="Result ="
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/buttonClear"
+        android:layout_marginLeft="15dp"
+        android:text="ANSWER"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
