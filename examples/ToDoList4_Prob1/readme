@@ -1,0 +1,10 @@
+Add two new menu items (in XML or in code) of your choice to the ToDo_List_4 example
+	– When clicked, no action need to be performed
+• Add one submenu item (in XML or in code) of your choice to the ToDo_List_4 example
+	– When clicked, no action need to be performed
+• Change the text of EditText component from within the code upon inflating the view
+	– Make the default text of EditText appear every time the EditText becomes visible
+• Change the notepad margin resource to 20dp
+• Change the Colors to colors of your choice
+• Change the text size to 10sp
+• Add few appropriate Log lines throughout the application
