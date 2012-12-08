@@ -1,11 +1,10 @@
-• Use ToDo_List_6 example as baseline for this homework
-• Add a button on ToDo List main view (either above the list view or bottom of the list view), name this button "Sync"
-	– Alternatively, add a menu item called "Sync" 
-• When the above button (or menu icon) is clicked, fire an Intent
-	– This Intent shall launch a new Activity to represent "SyncScreen" (chose a layout of your choice to create this view)
-	– SyncScreen has one line message about ongoing sync operation
-	– SyncScreen has one button called "GoBack"
-• When GoBack button is clicked, an Intent is fired which will take user back to main screen of ToDo List
-• Add a Yes/No dialog box to confirm removal of an item from ToDo List
-	– Optionally, remove the selected item from the ToDo List
+    Added following changes in ToDo_List_6 example
+    • Add a button on ToDo List main view (either above the list view or bottom of the list view), name this button "Sync"
+    • When the above button (or menu icon) is clicked, fire an Intent
+        – This Intent shall launch a new Activity to represent "SyncScreen" (chose a layout of your choice to create this view)
+        – SyncScreen has one line message about ongoing sync operation
+        – SyncScreen has one button called "GoBack"
+    • When GoBack button is clicked, an Intent is fired which will take user back to main screen of ToDo List
+    • Add a Yes/No dialog box to confirm removal of an item from ToDo List
+        – remove the selected item from the ToDo List if user chooses YES
 
