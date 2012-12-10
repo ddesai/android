@@ -1,0 +1,4 @@
+Add the following changes in either ToDo_List_6 example or ToDoList6_Prob2 
+• Using ToDo List, create a service that stores, retrieves, deletes and updates ToDo list items using a custom Content Provider
+– Display a Toast acknowledging activities finished by Service
+– Raise a Toast from service every 20 sec up to 5 min displaying number of ToDo List items pending for the user
