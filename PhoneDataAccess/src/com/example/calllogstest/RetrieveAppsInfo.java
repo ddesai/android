@@ -1,7 +1,9 @@
 package com.example.calllogstest;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
@@ -16,12 +18,14 @@ class RetrieveAppsInfo {
 	ArrayList<ApplicationInfo> filteredAppsList = null;
 	List<ApplicationInfo> deviceAppsList = null;
 	PackageManager pm = null;
+	Hashtable<String, LinkedList<PackageInfo>> pHash = null;
 	
 	RetrieveAppsInfo(Activity act) {
 		mAct = act; 
 		filteredAppsList = new ArrayList<ApplicationInfo>();
 		pm = mAct.getPackageManager();
 		getAppsList();
+		pHash = new Hashtable<String, LinkedList<PackageInfo>>();
 	}
 	
 	public void getAppsList() {
@@ -51,15 +55,27 @@ class RetrieveAppsInfo {
 				String appRecord = "Pkg: "+pkgInfo.packageName + " Permissions: ";
 				if(permsList != null) {
 					for(String perm :permsList) {
-						appRecord += perm + " ";						
+						//appRecord += perm + " ";
+						addToHash(pkgInfo,perm);
 					}
 				}
-				Log.v("DD", appRecord);
+				//Log.v("DD", appRecord);
 			} catch (NameNotFoundException e) {
 				Log.e("DD", "Exception: Couldnt retrieve the Package Info for the app");
 				e.printStackTrace();
 			}
 		}			
+	}
+	
+	public void addToHash(PackageInfo pkg, String perm) {
+		List<PackageInfo> value=null;
+		if(pHash.containsKey(perm)) {
+			value = pHash.get(perm);
+			value.add(pkg);
+		} else {
+			value = new LinkedList<PackageInfo>();
+			value.add(pkg);
+		}
 	}
 }
 
