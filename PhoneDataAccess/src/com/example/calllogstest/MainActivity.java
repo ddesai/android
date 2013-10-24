@@ -28,7 +28,8 @@ public class MainActivity extends Activity {
 		//rcl.getCallLogs();
 		
 		RetrieveAppsInfo rai = new RetrieveAppsInfo(this);
-		rai.populateAppsList();
+		//rai.printAppsInfo();
+		rai.printAppsPerms();
 		System.out.println(sb);
 		Log.v("DD",sb.toString());
 	}
