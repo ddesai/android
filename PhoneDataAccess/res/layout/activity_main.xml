@@ -24,12 +24,14 @@
         		android:id="@+id/button1"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
+        		android:onClick="onClickPhoneContacts"
         		android:text="Phone Contacts" />
 
     		<Button
         		android:id="@+id/button2"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
+        		android:onClick="onClickMusicList"
         		android:text="Music" />
         </TableRow>
 
@@ -42,13 +44,15 @@
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+        		android:onClick="onClickVideoList"               
                 android:text="Video" />
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Other" />
+        		android:onClick="onClickPermissionsList"
+                android:text="PermissionsList" />
 
         </TableRow>
 

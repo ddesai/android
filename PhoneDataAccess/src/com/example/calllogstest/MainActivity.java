@@ -2,38 +2,37 @@ package com.example.calllogstest;
 
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 
 public class MainActivity extends Activity {
-
+	RetrieveAppsInfo rai = null;
+	RetrieveContacts rc = null; 
+	RetrieveCallLogs rcl = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		readContacts();
+		rai = new RetrieveAppsInfo(this);
+		rc = new RetrieveContacts(getContentResolver());
+		rcl = new RetrieveCallLogs(getContentResolver());
 	}
 
-	public void readContacts() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("My Contacts List");
-		ContentResolver cr = getContentResolver();
-		
-		//RetrieveContacts rc = new RetrieveContacts(cr); 
-		//rc.getContacts();
-		//RetrieveCallLogs rcl = new RetrieveCallLogs(cr);
-		//rcl.getCallLogs();
-		
-		RetrieveAppsInfo rai = new RetrieveAppsInfo(this);
-		//rai.printAppsInfo();
+	public void onClickPermissionsList(View v) {
 		rai.printAppsPerms();
-		System.out.println(sb);
-		Log.v("DD",sb.toString());
 	}
-	
+
+	public void onClickPhoneContacts(View v) {
+		rc.getContacts();
+	}
+
+	public void onClickCallLogs(View v) {
+		rcl.getCallLogs();
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -18,14 +18,14 @@ class RetrieveAppsInfo {
 	ArrayList<ApplicationInfo> filteredAppsList = null;
 	List<ApplicationInfo> deviceAppsList = null;
 	PackageManager pm = null;
-	Hashtable<String, LinkedList<PackageInfo>> pHash = null;
+	Hashtable<String, List<PackageInfo>> pHash = null;
 	
 	RetrieveAppsInfo(Activity act) {
 		mAct = act; 
 		filteredAppsList = new ArrayList<ApplicationInfo>();
 		pm = mAct.getPackageManager();
 		getAppsList();
-		pHash = new Hashtable<String, LinkedList<PackageInfo>>();
+		pHash = new Hashtable<String, List<PackageInfo>>();
 	}
 	
 	public void getAppsList() {
@@ -39,7 +39,7 @@ class RetrieveAppsInfo {
 		while(itr.hasNext()) {
 			ApplicationInfo appInfo = itr.next();
 			String appRecord = null;
-			appRecord = appInfo.className + " " + appInfo.dataDir + " " + appInfo.permission;
+			appRecord = pm.getApplicationLabel(appInfo) + " " + appInfo.dataDir + " " + appInfo.permission;
 			Log.v("DD", appRecord);
 		}	
 	}
@@ -52,19 +52,32 @@ class RetrieveAppsInfo {
 			try {
 				PackageInfo pkgInfo = pm.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
 				String[] permsList = pkgInfo.requestedPermissions;
-				String appRecord = "Pkg: "+pkgInfo.packageName + " Permissions: ";
 				if(permsList != null) {
 					for(String perm :permsList) {
-						//appRecord += perm + " ";
 						addToHash(pkgInfo,perm);
 					}
 				}
-				//Log.v("DD", appRecord);
 			} catch (NameNotFoundException e) {
 				Log.e("DD", "Exception: Couldnt retrieve the Package Info for the app");
 				e.printStackTrace();
 			}
-		}			
+		}	
+		summarizePermissions();
+	}
+	
+	//iterates over the hash and prints the list of the packages using a particular permissions
+	public void summarizePermissions() {
+		Iterator<String> itr = pHash.keySet().iterator();
+		Log.v("DD", "SummarizePermissions");
+		while(itr.hasNext()) {
+			String permission = (String)itr.next();
+			List<PackageInfo> value = pHash.get(permission);
+			Iterator<PackageInfo> litr = value.iterator();
+			Log.v("DD", "Permission: "+permission);
+			while(litr.hasNext()) {
+				Log.v("DD", "-->"+ (litr.next()).packageName);
+			}
+		}
 	}
 	
 	public void addToHash(PackageInfo pkg, String perm) {
@@ -75,6 +88,7 @@ class RetrieveAppsInfo {
 		} else {
 			value = new LinkedList<PackageInfo>();
 			value.add(pkg);
+			pHash.put(perm, value);
 		}
 	}
 }
