@@ -2,6 +2,7 @@ package com.example.calllogstest;
 
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -22,17 +23,40 @@ public class MainActivity extends Activity {
 	}
 
 	public void onClickPermissionsList(View v) {
-		rai.printAppsPerms();
+		PrintAppsPermsTask task = new PrintAppsPermsTask();
+		task.execute();
 	}
 
 	public void onClickPhoneContacts(View v) {
-		rc.getContacts();
+		getContactsHelperThread();
+		//rc.getContacts();
 	}
 
 	public void onClickCallLogs(View v) {
 		rcl.getCallLogs();
 	}
 
+	// use of AsyncTask to create a parallel thread to obtain the apps permissions info
+	private class PrintAppsPermsTask extends AsyncTask<Void, Void, Void> {
+		   @Override
+		    protected Void doInBackground(Void... v) {
+			   rai.printAppsPerms();
+			   return null;
+		   }
+	}
+	
+	// use of Runnable to create a parallel thread 
+	private void getContactsHelperThread() {
+		// do something long
+	    Runnable runnable = new Runnable() {
+	      @Override
+	      public void run() {
+	    	  rc.getContacts();
+	      }
+	    };
+	    new Thread(runnable).start();
+	}	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
