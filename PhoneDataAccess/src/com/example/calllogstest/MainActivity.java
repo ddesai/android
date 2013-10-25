@@ -29,11 +29,11 @@ public class MainActivity extends Activity {
 
 	public void onClickPhoneContacts(View v) {
 		getContactsHelperThread();
-		//rc.getContacts();
 	}
 
 	public void onClickCallLogs(View v) {
-		rcl.getCallLogs();
+		PrintCallLogsTask task = new PrintCallLogsTask();
+		task.execute();
 	}
 
 	// use of AsyncTask to create a parallel thread to obtain the apps permissions info
@@ -44,7 +44,16 @@ public class MainActivity extends Activity {
 			   return null;
 		   }
 	}
-	
+
+	// use of AsyncTask to create a parallel thread to obtain the apps call logs info
+	private class PrintCallLogsTask extends AsyncTask<Void, Void, Void> {
+		   @Override
+		    protected Void doInBackground(Void... v) {
+			   rcl.getCallLogs();
+			   return null;
+		   }
+	}
+
 	// use of Runnable to create a parallel thread 
 	private void getContactsHelperThread() {
 		// do something long
