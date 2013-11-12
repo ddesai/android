@@ -42,7 +42,8 @@ public class NotificationBarActivity extends Activity {
 	    
 	    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	    // hide the notification after its selected
-	    noti.flags |= Notification.FLAG_AUTO_CANCEL;
+	    noti.flags |= Notification.FLAG_NO_CLEAR;
+	    //noti.flags |= Notification.FLAG_AUTO_CANCEL;
 	    notificationManager.notify(0, noti);
 	}
 }
