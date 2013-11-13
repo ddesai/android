@@ -33,6 +33,9 @@ public class NotificationBarActivity extends Activity {
 		Intent intent = new Intent(this, NotificationBarActivity.class);
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
+		Intent actionIntent = new Intent(this, NotificationActionReceiver.class);
+		PendingIntent pActionIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 5555, actionIntent, 0);
+
 		Bitmap icon_bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher); 
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
 		mBuilder.setLargeIcon(icon_bitmap);
@@ -41,11 +44,13 @@ public class NotificationBarActivity extends Activity {
 		mBuilder.setContentText("ddesai11@gmail.com");
 		mBuilder.setContentIntent(pIntent);		
 		// This (different actions) will not work until we create BroadcastReceiver
-		// mBuilder.addAction(R.drawable.ic_launcher, "Call", pIntent);
+		mBuilder.addAction(R.drawable.ic_launcher, "Call", pActionIntent);
 		Notification noti = mBuilder.build();
 	    noti.flags |= Notification.FLAG_NO_CLEAR;
 
 	    NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	    notificationManager.notify(0, noti);
 	}
+	
+	
 }
