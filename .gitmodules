@@ -1,0 +1,3 @@
+[submodule "fragments"]
+	path = fragments
+	url = git://github.com/donnfelker/fragments-demo
